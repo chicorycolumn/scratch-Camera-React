@@ -12,6 +12,11 @@ const statusBarsRef = {
   5: "■■■■",
 };
 
+/**Don't worry if faceapi is red underlined as "not defined".
+ * It gets defined when the index.html file runs, cos just before
+ * this file we're in runs, the face-api.min.js file is run (by the
+ * index.html file) and that is what makes faceapi to be used below. **/
+
 Promise.all([
   faceapi.nets.tinyFaceDetector.loadFromUri("/models"),
   faceapi.nets.faceLandmark68Net.loadFromUri("/models"),
@@ -125,14 +130,14 @@ video.addEventListener("play", () => {
             currentEmotion = "";
 
             if (emotionDuration[emotion] < 5) {
-              //This little bit is just to make the happy bars take twice as long to fill up, because the user showing happy is otherwise too easy.
+              //This bit is just to make the happy bars take twice as long to fill up, cos happy is easy otherwise.
               if (emotion === "happy") {
                 if (happyToggle) {
                   emotionDuration[emotion]++;
                 }
                 happyToggle = !happyToggle;
               }
-              //All non-happy emotions can fill up their bars without being hobbled.
+              //All non-happy emotions are allowed to fill up their bars normally.
               else emotionDuration[emotion]++;
             }
 

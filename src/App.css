@@ -6,6 +6,10 @@
   width: 1200px;
 }
 
+#video {
+  border: greenyellow solid 5pt;
+}
+
 body {
   border: orange solid 2pt;
   margin: 0;
